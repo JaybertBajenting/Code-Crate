@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -17,8 +18,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "tbl_code_snippet")
 public class CodeSnippet {
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -36,7 +35,6 @@ public class CodeSnippet {
     private Visibility visibility;
 
 
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -48,4 +46,25 @@ public class CodeSnippet {
 
 
 
+
+    @OneToMany(mappedBy = "codeSnippet",cascade = CascadeType.ALL)
+    private List<CodeSnippetTag> codeSnippetTagList;
+
+
+    @OneToMany(mappedBy = "codeSnippet",cascade = CascadeType.ALL)
+    private List<Like> likes;
+
+
+    @OneToMany(mappedBy = "codeSnippet",cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
+
+
+
+    @OneToMany(mappedBy = "codeSnippet",cascade = CascadeType.ALL)
+    private List<FolderSnippet> folderSnippetList;
+
+
+    @OneToMany(mappedBy = "codeSnippet",cascade = CascadeType.ALL)
+    private List<AccessControl> accessControlList;
 }
