@@ -18,11 +18,13 @@ import java.util.UUID;
 public class FolderSnippet {
 
 
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "folder_snippet_id")
     private UUID id;
+
+
 
 
     @ManyToOne
